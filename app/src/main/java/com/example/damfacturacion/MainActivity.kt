@@ -1,66 +1,87 @@
 package com.example.damfacturacion
 
+import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.damfacturacion.ui.theme.DAMFacturacionTheme
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.example.damfacturacion.controller.LoginController
+import com.example.damfacturacion.model.Usuario
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var usernameEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var loginButton: Button
+    private lateinit var progressBar: ProgressBar  // Declarar ProgressBar
+
+
+
+    // Usamos 'viewModels()' para obtener la instancia de LoginController
+    private val loginController: LoginController by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            DAMFacturacionTheme {
-                // Variable de estado para controlar la pantalla actual
-                var showLoginScreen by remember { mutableStateOf(true) }
+        setContentView(R.layout.activity_login)
 
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    if (showLoginScreen) {
-                        LoginScreen {
-                            // Acción después del inicio de sesión exitoso
-                            showLoginScreen = false // Muestra la siguiente pantalla
-                        }
-                    } else {
-                        // Pantalla que se muestra después del inicio de sesión
-                        //Greeting("Bienvenidos") // Reemplaza esto con tu pantalla principal
-                        MainScreen()
-                    }
-                }
+        // Inicializar vistas
+        usernameEditText = findViewById(R.id.editTextUsername)
+        passwordEditText = findViewById(R.id.editTextPassword)
+        loginButton = findViewById(R.id.buttonLogin)
+        progressBar = findViewById(R.id.progressBar)
+
+        // Configurar el botón de login
+        loginButton.setOnClickListener {
+            val username = usernameEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
+
+            // Mostrar el ProgressBar (indicador de carga)
+            progressBar.visibility = ProgressBar.VISIBLE
+
+            // Validación de campos vacíos
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Usuario o clave no pueden estar vacíos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            loginController.login(username, password,
+                onSuccess = { usuario: Usuario  ->
+
+                    // Ocultar el ProgressBar una vez que termine el proceso
+                    progressBar.visibility = ProgressBar.GONE
+
+                    // Mostrar mensaje de éxito con el nombre del usuario
+                    Toast.makeText(this, "Bienvenido ${usuario.nombre}", Toast.LENGTH_SHORT).show()
+
+                    // Crear un Intent para ir a la pantalla principal
+                    val intent = Intent(this, MenuPrincipalActivity::class.java)
+
+                    // Pasar el nombre del usuario al Intent
+                    intent.putExtra("NOMBRE_USUARIO", usuario.nombre)
+
+                    // Iniciar la actividad MenuPrincipalActivity
+                    startActivity(intent)
+
+                    // Finalizar la actividad de login para que el usuario no pueda regresar
+                    finish()
+                },
+                onFailure = { errorMessage ->
+
+                    // Ocultar el ProgressBar una vez que termine el proceso
+                    progressBar.visibility = ProgressBar.GONE
+
+                    // Mostrar el mensaje de error
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            )
+
+
         }
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DAMFacturacionTheme {
-        Greeting("Android")
-    }
-}
-
-@Composable
-fun MainScreen() {
-    Text("Esta es la pantalla principal")
 }

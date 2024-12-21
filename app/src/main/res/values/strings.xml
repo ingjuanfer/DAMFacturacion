@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DAMFacturacion</string>
+    <string name="usuario">Usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="show_password">Mostrar contraseña</string>
+    <string name="Ingresar">Ingresar</string>
 </resources>
