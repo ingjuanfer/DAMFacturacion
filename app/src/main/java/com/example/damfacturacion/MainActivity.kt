@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.damfacturacion.controller.LoginController
+import com.example.damfacturacion.controller.SessionController
 import com.example.damfacturacion.model.Usuario
 
 class MainActivity : AppCompatActivity() {
@@ -52,6 +53,10 @@ class MainActivity : AppCompatActivity() {
 
             loginController.login(username, password,
                 onSuccess = { usuario: Usuario  ->
+
+                    // Guardar la información del usuario en la sesión
+                    val sessionController = SessionController(this)
+                    sessionController.saveSession(usuario)
 
                     // Ocultar el ProgressBar una vez que termine el proceso
                     progressBar.visibility = ProgressBar.GONE

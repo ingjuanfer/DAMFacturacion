@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <!-- Título centrado -->
+    <TextView
+        android:id="@+id/textViewBienvenido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Bienvenido!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginBottom="8dp"
+        android:gravity="center" />
+
+    <!-- Nombre del usuario centrado -->
+    <TextView
+        android:id="@+id/textViewNombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Usuario"
+        android:textSize="18sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="24dp"
+        android:gravity="center" />
+
+    <!-- Tabla para organizar los botones -->
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:gravity="center">
+
+        <!-- Primera fila de botones -->
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/buttonCrearProducto"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:backgroundTint="#FF9800"
+                android:text="Crear Producto"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/buttonEditarProducto"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:backgroundTint="#4CAF50"
+                android:text="Editar Producto"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/buttonEliminarProducto"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:backgroundTint="#2196F3"
+                android:text="Eliminar Producto"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+        </TableRow>
+
+        <!-- Segunda fila de botones -->
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/buttonInformeProductosActivos"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:backgroundTint="#9C27B0"
+                android:text="Informe Productos Activos"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/buttonInformeProductosNoActivos"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:backgroundTint="#FFC107"
+                android:text="Informe Productos No Activos"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/buttonRegresar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:backgroundTint="#F44336"
+                android:text="Regresar al menu principal"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:onClick="onBackClick" />
+
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
