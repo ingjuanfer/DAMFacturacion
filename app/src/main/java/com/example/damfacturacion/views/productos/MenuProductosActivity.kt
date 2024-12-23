@@ -47,10 +47,10 @@ class MenuProductosActivity : AppCompatActivity() {
         finish()
     }
 
-    // Método para el botón Salir
-    fun menuProductosonClick(view: View) {
+    // Método para el botón Informe Productos
+    fun informeProductosonClick(view: View) {
         // Crear un Intent para ir a la pantalla principal
-        val intent = Intent(this, MenuProductosActivity::class.java)
+        val intent = Intent(this, InformeProductosActivity::class.java)
 
         // Iniciar la actividad MenuPrincipalActivity
         startActivity(intent)

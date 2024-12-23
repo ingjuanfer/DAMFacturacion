@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- producto_item.xml -->
+
+        <TextView
+            android:id="@+id/textViewNombreProducto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del Producto"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewPrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewIva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IVA"
+            android:textSize="14sp" />
+
+        <!-- Aquí puedes agregar más elementos como la imagen del producto -->
+    </LinearLayout>

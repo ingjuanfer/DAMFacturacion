@@ -31,6 +31,9 @@
         <activity android:name=".views.productos.MenuProductosActivity">
             <!-- Puedes agregar cualquier otro atributo o configuración si es necesario -->
         </activity>
+        <activity android:name=".views.productos.InformeProductosActivity">
+            <!-- Puedes agregar cualquier otro atributo o configuración si es necesario -->
+        </activity>
     </application>
 
 </manifest>

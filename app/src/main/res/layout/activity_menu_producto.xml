@@ -86,7 +86,8 @@
                 android:text="Informe Productos Activos"
                 android:textSize="14sp"
                 android:textColor="#FFFFFF"
-                android:gravity="center" />
+                android:gravity="center"
+                android:onClick="informeProductosonClick" />
 
             <Button
                 android:id="@+id/buttonInformeProductosNoActivos"

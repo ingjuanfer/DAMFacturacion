@@ -1,7 +1,10 @@
+import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -35,7 +38,8 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
-        compose = true
+        dataBinding = true // Habilitar Data Binding
+        compose = true // Habilitar Jetpack Compose
     }
 }
 
@@ -76,4 +80,6 @@ dependencies {
 
     implementation ("com.squareup.okhttp3:okhttp:4.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 }
