@@ -10,10 +10,13 @@ import com.example.damfacturacion.adapter.ProductoAdapter
 import com.example.damfacturacion.api.RetrofitClient
 import com.example.damfacturacion.controller.SessionController
 import com.example.damfacturacion.interfaces.ProductoService
+import com.example.damfacturacion.model.Producto
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.math.BigDecimal
+import java.util.Date
 
 class InformeProductosActivity : AppCompatActivity() {
 
@@ -45,6 +48,7 @@ class InformeProductosActivity : AppCompatActivity() {
         }
 
         val adapter = ProductoAdapter(emptyList())
+
         recyclerViewProductos.adapter = adapter // Asignar el adapter al RecyclerView
 
         // Lanzar la corrutina para obtener los productos

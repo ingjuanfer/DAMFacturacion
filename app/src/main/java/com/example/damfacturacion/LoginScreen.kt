@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 fun LoginScreen(onLoginSuccess: () -> Unit) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var empresa by remember { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
 
     Column(
@@ -35,9 +36,15 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
             visualTransformation = PasswordVisualTransformation() // Oculta la contraseña
         )
         Spacer(modifier = Modifier.height(16.dp))
+        OutlinedTextField(
+            value = empresa,
+            onValueChange = { empresa = it },
+            label = { Text("empresa") }
+        )
+        Spacer(modifier = Modifier.height(8.dp))
         Button(onClick = {
             // Aquí irá la lógica de autenticación (punto 3)
-            if(username.isNotEmpty() && password.isNotEmpty()) {
+            if(username.isNotEmpty() && password.isNotEmpty() && empresa.isNotEmpty()) {
                 onLoginSuccess()
             } else {
                 showError = true

@@ -40,6 +40,7 @@ android {
     buildFeatures {
         dataBinding = true // Habilitar Data Binding
         compose = true // Habilitar Jetpack Compose
+        viewBinding = true // Habilitar View Binding
     }
 }
 
