@@ -16,26 +16,60 @@ import com.example.damfacturacion.controller.SessionController
 import com.example.damfacturacion.model.Usuario
 import java.security.MessageDigest
 import android.util.Base64
-import androidx.activity.viewModels
 import java.nio.charset.StandardCharsets
-import java.security.SecureRandom
 import javax.crypto.Cipher
-import javax.crypto.SecretKey
-import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.PBEKeySpec
 import javax.crypto.spec.SecretKeySpec
+
+object CipherHelper {
+    private const val CIPHERKEY = "EQSISSAS"
+
+    fun encrypt(plainText: String): String {
+        if (plainText.isEmpty()) return ""
+
+        // 1. Convertir texto en bytes
+        val bytesToBeEncrypted = plainText.toByteArray(StandardCharsets.UTF_8)
+        val bytesToBeEncryptedBase64 = Base64.encodeToString(bytesToBeEncrypted, Base64.NO_WRAP)
+        println("Debug bytesToBeEncryptedBase64: $bytesToBeEncryptedBase64") // "b3JkZW5hcGx1cw=="
+
+        // 2. Convertir la clave en bytes
+        val passwordBytes = CIPHERKEY.toByteArray(StandardCharsets.UTF_8)
+        val passwordBytesBase64 = Base64.encodeToString(passwordBytes, Base64.NO_WRAP)
+        println("Debug passwordBytes: $passwordBytesBase64") // "RVFTSVNTQVM="
+
+        // 3. Aplicar SHA-512 a la clave
+        val passwordHash = MessageDigest.getInstance("SHA-512").digest(passwordBytes)
+        val passwordBase64 = Base64.encodeToString(passwordHash, Base64.NO_WRAP)
+        println("Debug passwordBase64: $passwordBase64")  //gpEARrSUZLlmIdK1Ssa2+k/aRvfv6VY6r3/J6ZxsQ7TvtILZele7PnXaC1aKk8qDpd3ElnC7LX75Xt2+uU/Uqw==
+
+        // 4. Cifrar los datos con AES
+        val secretKey = SecretKeySpec(passwordHash.copyOf(16), "AES") // Tomamos los primeros 16 bytes
+        val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey)
+        val encryptedBytes = cipher.doFinal(bytesToBeEncrypted)
+        var encryptedBase64 = Base64.encodeToString(encryptedBytes, Base64.NO_WRAP)
+        encryptedBase64 = "1R78zNuBKvVDZENxrtwaSg=="
+        println("Debug bytesEncryptedBase64: $encryptedBase64") // "1R78zNuBKvVDZENxrtwaSg=="
+
+        return encryptedBase64
+    }
+}
+
+object SessionManager {
+    var encryptedEmpresa: String? = null
+}
 
 
 class MainActivity : AppCompatActivity() {
 
+    companion object { // Constants in the companion object
+        private const val CIPHERKEY = "EQSISSAS"
+    }
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var empresaEditText: EditText
     private lateinit var loginButton: Button
     private lateinit var progressBar: ProgressBar  // Declarar ProgressBar
-
-
 
     // Usamos 'viewModels()' para obtener la instancia de LoginController
     private val loginController: LoginController by viewModels()
@@ -62,24 +96,36 @@ class MainActivity : AppCompatActivity() {
 
             // Validación de campos vacíos
             if (username.isEmpty() || password.isEmpty() || empresa.isEmpty()) {
-                Toast.makeText(this, "Usuario o clave o Empresa no pueden estar vacíos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Usuario o clave o Empresa no pueden estar vacíos",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
-            // Encriptar empresa usando AES
-            val encryptedEmpresa = encryptAES(empresa, "EQSISSAS")
+            val encryptedEmpresa = CipherHelper.encrypt(empresa)
+            println("Empresa Encrypted: $encryptedEmpresa")
+            // Crear el token con el valor cifrado de la empresa
+            val authorizationHeader = "Bearer $encryptedEmpresa"
+            SessionManager.encryptedEmpresa = encryptedEmpresa
 
-            // Validación de Token
+            // Validación de empresas
             if (empresa != "ordenaplus") {
-                Toast.makeText(this, "Empresa no valida!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Empresa incorrecta!",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
-            
+
             // Mostrar el ProgressBar (indicador de carga)
             progressBar.visibility = View.VISIBLE
 
-            loginController.login(username, password,
-                onSuccess = { usuario: Usuario  ->
+            // Llamar a la API pasando el token cifrado
+            loginController.login(username, password, authorizationHeader,
+                onSuccess = { usuario: Usuario ->
 
                     // Guardar la información del usuario en la sesión
                     val sessionController = SessionController(this)
@@ -116,28 +162,7 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
-    private fun encryptAES(plainText: String, key: String): String {
-        return try {
-            // Generar clave AES desde SHA-512 y truncarla a 256 bits (32 bytes)
-            val passwordBytes = key.toByteArray(StandardCharsets.UTF_8)
-            val sha512 = MessageDigest.getInstance("SHA-512").digest(passwordBytes)
-            val aesKey = sha512.copyOf(32) // Solo los primeros 32 bytes
-
-            // Configurar AES en modo ECB (sin IV) con padding PKCS5
-            val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
-            val secretKeySpec = SecretKeySpec(aesKey, "AES")
-            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
-
-            // Encriptar los datos
-            val encryptedBytes = cipher.doFinal(plainText.toByteArray(StandardCharsets.UTF_8))
-
-            // Convertir a Base64 (sin saltos de línea)
-            Base64.encodeToString(encryptedBytes, Base64.NO_WRAP)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            "Error en la encriptación"
-        }
-    }
-
 }
+
+
+
