@@ -12,11 +12,12 @@ import retrofit2.Response
 
 class LoginController : ViewModel() {
 
-    fun login(username: String, password: String, onSuccess: (Usuario) -> Unit, onFailure: (String) -> Unit) {
+    // Modificar el método login para aceptar un parámetro adicional 'authorizationHeader'
+    fun login(username: String, password: String, authorizationHeader: String, onSuccess: (Usuario) -> Unit, onFailure: (String) -> Unit) {
         viewModelScope.launch {
             try {
-                // Llamamos al servicio API para obtener la respuesta
-                val response = RetrofitClient.getApiService().login(username, password)
+                // Llamamos al servicio API para obtener la respuesta, pasando el encabezado de autorización
+                val response = RetrofitClient.getApiService().login(username, password, authorizationHeader)
 
                 // Verificamos la respuesta
                 handleResponse(response, onSuccess, onFailure)

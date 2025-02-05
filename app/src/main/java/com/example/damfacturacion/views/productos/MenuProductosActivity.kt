@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.damfacturacion.MenuPrincipalActivity
+import com.example.damfacturacion.SessionManager
 import com.example.damfacturacion.controller.SessionController
 
 class MenuProductosActivity : AppCompatActivity() {
@@ -33,6 +34,11 @@ class MenuProductosActivity : AppCompatActivity() {
         } else {
             // Manejar el caso cuando no hay sesión
         }
+        val encryptedEmpresa = SessionManager.encryptedEmpresa
+        if (encryptedEmpresa != null) {
+            println("Empresa Encrypted: $encryptedEmpresa")
+        }
+
     }
 
     // Método para el botón Regresar
