@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.productos.NuevoProductoActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondoapp"
+        android:contentDescription="Fondo de la aplicación" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000" />
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="Logo de la aplicación"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logoapp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/imageViewLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agregar Producto"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/editTextCodProducto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Código del Producto"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/editTextNombreProducto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del Producto"
+                android:inputType="text" />
+
+            <Spinner
+                android:id="@+id/spinnerUnidadMedida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/editTextIVA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="IVA (%)"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/editTextPrecio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Precio"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/editTextLinkImagen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Link de la Imagen"
+                android:inputType="text" />
+
+            <CheckBox
+                android:id="@+id/switchActivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Activo" />
+
+            <Button
+                android:id="@+id/buttonAgregarProducto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agregar Producto"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

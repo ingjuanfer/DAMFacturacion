@@ -8,8 +8,19 @@ data class Producto(
     val nombreProducto: String?,
     val activo: Boolean?,
     val unidadMedida: String?,
-    val iva: BigDecimal?,
-    val precio: BigDecimal?,
+    val iva: Double?,
+    val precio: Double?,
+    val linkImage: String?
+)
+
+
+data class ListaProductos(
+    val codProducto: String,
+    val nombreProducto: String?,
+    val activo: Boolean?,
+    val unidadMedida: String?,
+    val iva: Double?,
+    val precio: Double?,
     val fechaCreacion: Date?,
     val linkImage: String?
 )
