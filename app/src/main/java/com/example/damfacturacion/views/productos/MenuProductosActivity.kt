@@ -1,6 +1,5 @@
 package com.example.damfacturacion.views.productos
 
-import com.example.damfacturacion.MainActivity
 import com.example.damfacturacion.R
 import android.content.Intent
 import android.os.Bundle
@@ -59,6 +58,18 @@ class MenuProductosActivity : AppCompatActivity() {
         val intent = Intent(this, InformeProductosActivity::class.java)
 
         // Iniciar la actividad MenuPrincipalActivity
+        startActivity(intent)
+
+        // Finalizar la actividad de login para que el usuario no pueda regresar
+        finish()
+    }
+
+    // Método para el botón Nuevo Producto
+    fun nuevoProductoonClick(view: View) {
+        // Crear un Intent para ir a la pantalla principal
+        val intent = Intent(this, NuevoProductoActivity::class.java)
+
+        // Iniciar la actividad NuevoProductoActivity
         startActivity(intent)
 
         // Finalizar la actividad de login para que el usuario no pueda regresar
