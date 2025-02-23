@@ -21,18 +21,6 @@
         android:layout_height="match_parent"
         android:background="#80000000" />
 
-    <!-- Logo en la parte superior -->
-    <ImageView
-        android:id="@+id/imageViewLogo"
-        android:layout_width="278dp"
-        android:layout_height="177dp"
-        android:layout_marginTop="80dp"
-        android:contentDescription="Logo de la aplicación"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logoapp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Cuadro blanco para el contenido -->
     <androidx.cardview.widget.CardView
@@ -42,58 +30,71 @@
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
         android:background="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/imageViewLogo"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="600dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:padding="24dp">
+
+            <!-- Logo en la parte superior -->
+            <ImageButton
+                android:id="@+id/buttonMenuPrincipal"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/logoapp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="menuPrincipalonClick"/>
 
             <!-- Título centrado -->
             <TextView
                 android:id="@+id/textViewBienvenido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gestión de Productos"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#333333"
                 android:layout_marginBottom="8dp"
-                android:gravity="center" />
+                android:gravity="center"
+                android:text="PRODUCTOS"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <!-- Nombre del usuario centrado -->
             <TextView
                 android:id="@+id/textViewNombreUsuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre del Usuario"
-                android:textSize="18sp"
-                android:textColor="#666666"
                 android:layout_marginBottom="24dp"
-                android:gravity="center" />
+                android:gravity="center"
+                android:text="Nombre del Usuario"
+                android:textColor="#666666"
+                android:textSize="18sp" />
 
             <!-- Tabla de botones -->
             <TableLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:stretchColumns="*"
-                android:gravity="center">
+                android:gravity="center"
+                android:stretchColumns="*">
 
                 <TableRow>
+
                     <Button
                         android:id="@+id/buttonCrearProducto"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:backgroundTint="#FF9800"
+                        android:onClick="nuevoProductoonClick"
                         android:text="Crear"
-                        android:textSize="12sp"
                         android:textColor="#FFFFFF"
-                        android:onClick="nuevoProductoonClick" />
+                        android:textSize="12sp" />
 
                     <Button
                         android:id="@+id/buttonEditarProducto"
@@ -101,8 +102,8 @@
                         android:layout_height="80dp"
                         android:backgroundTint="#4CAF50"
                         android:text="Editar"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
 
                     <Button
                         android:id="@+id/buttonEliminarProducto"
@@ -110,37 +111,8 @@
                         android:layout_height="80dp"
                         android:backgroundTint="#2196F3"
                         android:text="Eliminar"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF" />
-                </TableRow>
-
-                <TableRow>
-                    <Button
-                        android:id="@+id/buttonInformeProductosActivos"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:backgroundTint="#9C27B0"
-                        android:text="Activos"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF" />
-
-                    <Button
-                        android:id="@+id/buttonInformeProductosNoActivos"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:backgroundTint="#FFC107"
-                        android:text="No Activos"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF" />
-
-                    <Button
-                        android:id="@+id/buttonRegresar"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:backgroundTint="#F44336"
-                        android:text="Regresar"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
                 </TableRow>
             </TableLayout>
         </LinearLayout>

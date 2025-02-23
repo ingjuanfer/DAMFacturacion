@@ -1,12 +1,15 @@
 package com.example.damfacturacion.interfaces
 
-import retrofit2.http.GET
-import retrofit2.http.Headers
 import com.example.damfacturacion.model.Producto
+import retrofit2.Call
+import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.POST
 
 interface ProductoService {
-
-    @Headers("Authorization: Bearer 1R78zNuBKvVDZENxrtwaSg==")
-    @GET("Productos")
-    suspend fun getProductos(): List<Producto>
+    @POST("Productos/CreateProducto")
+    fun agregarProducto(
+        @Header("Authorization") token: String,
+        @Body producto: Producto
+    ): Call<Void>
 }

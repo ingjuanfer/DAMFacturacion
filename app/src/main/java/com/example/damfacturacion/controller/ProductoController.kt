@@ -1,7 +1,9 @@
 package com.example.damfacturacion.controller
 
-import com.example.damfacturacion.interfaces.ApiService
+import com.example.damfacturacion.interfaces.ProductoService
 import com.example.damfacturacion.model.Producto
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Call
@@ -15,17 +17,24 @@ class ProductoController {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    private val apiService: ApiService = retrofit.create(ApiService::class.java)
+    private val productoService: ProductoService = retrofit.create(ProductoService::class.java)
 
     fun agregarProducto(token: String, producto: Producto, callback: (Boolean, String) -> Unit) {
-        val call = apiService.agregarProducto("Bearer $token", producto)
+        val call = productoService.agregarProducto("Bearer $token", producto)
 
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    callback(true, "Producto agregado correctamente")
+                    callback(true, "Producto creado correctamente")
                 } else {
-                    callback(false, "Error: ${response.code()} - ${response.message()}")
+                    val errorBody = response.errorBody()?.string()
+                    val errorMessage = try {
+                        val errorJson = Gson().fromJson(errorBody, ErrorResponse::class.java)
+                        errorJson.mensaje ?: "Error desconocido"
+                    } catch (e: Exception) {
+                        "Error desconocido (${response.code()})"
+                    }
+                    callback(false, errorMessage)
                 }
             }
 
@@ -34,4 +43,9 @@ class ProductoController {
             }
         })
     }
+
+    // Clase para parsear el error JSON
+    data class ErrorResponse(
+        @SerializedName("mensaje") val mensaje: String
+    )
 }
