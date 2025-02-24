@@ -5,11 +5,27 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ProductoService {
+
     @POST("Productos/CreateProducto")
     fun agregarProducto(
         @Header("Authorization") token: String,
         @Body producto: Producto
     ): Call<Void>
+
+    @DELETE("Productos/{codProducto}")
+    fun eliminarProducto(
+        @Header("Authorization") token: String,
+        @Path("codProducto") codProducto: String
+    ): Call<Void>
+
+    @GET("Productos/{codProducto}")
+    fun getProductoPorCodigo(
+        @Header("Authorization") token: String,
+        @Path("codProducto") codProducto: String
+    ): Call<List<Producto>> // Se devuelve una lista porque el JSON es un array
+
+
 }
