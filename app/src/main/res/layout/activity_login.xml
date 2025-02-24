@@ -19,21 +19,8 @@
         android:layout_height="match_parent"
         android:background="#80000000" /> <!-- Negro con 50% de opacidad -->
 
-    <!-- Logo en la parte superior -->
 
     <!-- Cuadro blanco para el formulario -->
-    <ImageView
-        android:id="@+id/imageViewLogo"
-        android:layout_width="278dp"
-        android:layout_height="177dp"
-        android:layout_marginTop="104dp"
-        android:contentDescription="Logo de la aplicación"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logoapp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
@@ -42,28 +29,37 @@
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
         android:background="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/imageViewLogo"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="600dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:padding="24dp">
+
+            <!-- Logo en la parte superior -->
+            <ImageView
+                android:id="@+id/imageViewLogo"
+                android:layout_width="180dp"
+                android:layout_height="165dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="Logo de la aplicación"
+                android:src="@drawable/logoapp" />
 
             <!-- Título centrado -->
             <TextView
-                android:id="@+id/textViewTitle"
+                android:id="@+id/textViewBienvenido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bienvenido a EASYINVOICE"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="Bienvenido"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editTextUsername"

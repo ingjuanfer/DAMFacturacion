@@ -1,6 +1,9 @@
 package com.example.damfacturacion.views.productos
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.damfacturacion.R
@@ -67,11 +70,29 @@ class NuevoProductoActivity : AppCompatActivity() {
             runOnUiThread {
                 if (success) {
                     Toast.makeText(this, "Producto agregado con éxito", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MenuProductosActivity::class.java)
+                    // Iniciar la actividad NuevoProductoActivity
+                    startActivity(intent)
+                    // Finalizar la actividad para que el usuario no pueda regresar
                     finish()
                 } else {
-                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                    val errorMessage = if (message.isNotEmpty()) "Error: $message" else "Error desconocido"
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
+
+    // Método para el botón que es el logo de la app para regresar al menu Productos
+    fun menuProductosonClick(view: View) {
+        // Crear un Intent para ir a la pantalla del menu productos
+        val intent = Intent(this, MenuProductosActivity::class.java)
+
+        // Iniciar la actividad NuevoProductoActivity
+        startActivity(intent)
+
+        // Finalizar la actividad de login para que el usuario no pueda regresar
+        finish()
+    }
+
 }

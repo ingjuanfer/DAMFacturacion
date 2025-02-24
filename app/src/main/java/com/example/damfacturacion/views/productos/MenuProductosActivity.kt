@@ -40,24 +40,12 @@ class MenuProductosActivity : AppCompatActivity() {
 
     }
 
-    // Método para el botón Regresar
-    fun onBackClick(view: View) {
-        // Crear un Intent para ir a la pantalla principal
+    // Método para el botón que es el logo de la app para regresar al menu Principal
+    fun menuPrincipalonClick(view: View) {
+        // Crear un Intent para ir a la pantalla del menu productos
         val intent = Intent(this, MenuPrincipalActivity::class.java)
 
-        // Iniciar la actividad MenuPrincipalActivity
-        startActivity(intent)
-
-        // Finalizar la actividad de login para que el usuario no pueda regresar
-        finish()
-    }
-
-    // Método para el botón Informe Productos
-    fun informeProductosonClick(view: View) {
-        // Crear un Intent para ir a la pantalla principal
-        val intent = Intent(this, InformeProductosActivity::class.java)
-
-        // Iniciar la actividad MenuPrincipalActivity
+        // Iniciar la actividad NuevoProductoActivity
         startActivity(intent)
 
         // Finalizar la actividad de login para que el usuario no pueda regresar
@@ -75,5 +63,7 @@ class MenuProductosActivity : AppCompatActivity() {
         // Finalizar la actividad de login para que el usuario no pueda regresar
         finish()
     }
+
+
 
 }

@@ -50,13 +50,13 @@ class InformeProductosActivity : AppCompatActivity() {
         val adapter = ProductoAdapter(emptyList())
 
         recyclerViewProductos.adapter = adapter // Asignar el adapter al RecyclerView
-
+/*
         // Lanzar la corrutina para obtener los productos
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val productos = productoService.getProductos()
+                val productos = productoService.agregarProducto()
                 withContext(Dispatchers.Main) {
-                    adapter.submitList(productos)
+                    adapter.submitList()
                 }
             } catch (e: Exception) {
                 // Manejar el error, por ejemplo, mostrar un mensaje al usuario
@@ -65,5 +65,6 @@ class InformeProductosActivity : AppCompatActivity() {
                 }
             }
         }
+        */
     }
 }

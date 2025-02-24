@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.damfacturacion.controller.SessionController
+import com.example.damfacturacion.views.clientes.MenuClientesActivity
 import com.example.damfacturacion.views.productos.MenuProductosActivity
 
 class MenuPrincipalActivity : AppCompatActivity() {
@@ -47,10 +48,22 @@ class MenuPrincipalActivity : AppCompatActivity() {
 
     // Método para el botón ir a PRODUCTOS
     fun menuProductosonClick(view: View) {
-        // Crear un Intent para ir a la pantalla principal
+        // Crear un Intent para ir al menu productos
         val intent = Intent(this, MenuProductosActivity::class.java)
 
         // Iniciar la actividad MenuPrincipalActivity
+        startActivity(intent)
+
+        // Finalizar la actividad de login para que el usuario no pueda regresar
+        finish()
+    }
+
+    // Método para el botón ir a CLIENTES
+    fun menuClientesonClick(view: View) {
+        // Crear un Intent para ir al menu clientes
+        val intent = Intent(this, MenuClientesActivity::class.java)
+
+        // Iniciar la actividad MenuClientesActivity
         startActivity(intent)
 
         // Finalizar la actividad de login para que el usuario no pueda regresar
