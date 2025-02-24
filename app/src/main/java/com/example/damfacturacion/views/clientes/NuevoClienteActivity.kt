@@ -2,6 +2,7 @@ package com.example.damfacturacion.views.clientes
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.*
@@ -11,6 +12,7 @@ import com.example.damfacturacion.SessionManager
 import com.example.damfacturacion.controller.ClienteController
 import com.example.damfacturacion.model.Cliente
 import com.example.damfacturacion.views.clientes.MenuClientesActivity
+import com.google.gson.Gson
 
 
 class NuevoClienteActivity : AppCompatActivity() {
@@ -60,7 +62,7 @@ class NuevoClienteActivity : AppCompatActivity() {
     private fun agregarCliente() {
         val nif = editTextnif.text.toString().trim()
         val tipoIdentificacion = editTexttipoIdentificacion.text.toString().trim()
-        val digitoControl = editTextdigitoControl.text.toString().toIntOrNull() ?: 0
+        val digitoControl = editTextdigitoControl.text.toString().trim()
         val activo = true
         val nombreEmpresa = editTextnombreEmpresa.text.toString().trim()
         val telefono = editTexttelefono.text.toString().trim()
@@ -79,6 +81,10 @@ class NuevoClienteActivity : AppCompatActivity() {
 
         val cliente = Cliente(nif, tipoIdentificacion, digitoControl, activo ,nombreEmpresa, telefono, movil, direccion, codigoPostal, email, codCiudad, codProvincia, codPais)
         val token = SessionManager.encryptedEmpresa
+
+            // Mostrar el JSON antes de enviarlo (para depuración)
+        val jsonCliente = Gson().toJson(cliente)
+        Log.d("ClienteService", "JSON enviado: $jsonCliente")
 
         clienteController.agregarCliente(token.toString(), cliente) { success, message ->
             runOnUiThread {

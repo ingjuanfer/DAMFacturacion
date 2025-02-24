@@ -3,7 +3,7 @@ package com.example.damfacturacion.model
 data class Cliente(
     val nif: String,
     val tipoIdentificacion: String?,
-    val digitoControl: Int?,
+    val digitoControl: String?,
     val activo: Boolean?,
     val nombreEmpresa: String?,
     val telefono: String?,
