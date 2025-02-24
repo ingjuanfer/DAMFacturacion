@@ -44,6 +44,55 @@ class ProductoController {
         })
     }
 
+    fun obtenerProducto(token: String, codProducto: String, callback: (Producto?, String) -> Unit) {
+        val call = productoService.getProductoPorCodigo("Bearer $token", codProducto)
+
+        call.enqueue(object : Callback<List<Producto>> {
+            override fun onResponse(call: Call<List<Producto>>, response: Response<List<Producto>>) {
+                if (response.isSuccessful && !response.body().isNullOrEmpty()) {
+                    callback(response.body()!![0], "Producto encontrado")
+                } else {
+                    callback(null, "Producto no encontrado")
+                }
+            }
+
+            override fun onFailure(call: Call<List<Producto>>, t: Throwable) {
+                callback(null, "Error de conexión: ${t.message}")
+            }
+        })
+    }
+
+    fun eliminarProducto(token: String, codProducto: String, callback: (Boolean , String ) -> Unit) {
+        val call = productoService.eliminarProducto("Bearer $token", codProducto)
+
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    callback(true, "Producto eliminado correctamente")
+                } else {
+                    val errorMessage = parseError(response)
+                    callback(false, errorMessage)
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                callback(false, "Error de conexión: ${t.message}")
+            }
+        })
+    }
+
+    // Método para parsear errores
+    private fun parseError(response: Response<*>): String {
+        val errorBody = response.errorBody()?.string()
+        return try {
+            val errorJson = Gson().fromJson(errorBody, ErrorResponse::class.java)
+            errorJson.mensaje ?: "Error desconocido"
+        } catch (e: Exception) {
+            "Error desconocido (${response.code()})"
+        }
+    }
+
+
     // Clase para parsear el error JSON
     data class ErrorResponse(
         @SerializedName("mensaje") val mensaje: String

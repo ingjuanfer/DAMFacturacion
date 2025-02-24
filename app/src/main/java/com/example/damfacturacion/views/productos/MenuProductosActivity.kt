@@ -64,6 +64,18 @@ class MenuProductosActivity : AppCompatActivity() {
         finish()
     }
 
+    // Método para el botón Eliminar Producto
+    fun eliminarProductoonClick(view: View) {
+        // Crear un Intent para ir a la pantalla principal
+        val intent = Intent(this, EliminarProductoActivity::class.java)
+
+        // Iniciar la actividad NuevoProductoActivity
+        startActivity(intent)
+
+        // Finalizar la actividad de login para que el usuario no pueda regresar
+        finish()
+    }
+
 
 
 }

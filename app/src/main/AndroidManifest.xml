@@ -34,6 +34,9 @@
         <activity android:name=".views.productos.NuevoProductoActivity">
             <!-- Puedes agregar cualquier otro atributo o configuración si es necesario -->
         </activity>
+        <activity android:name=".views.productos.EliminarProductoActivity">
+            <!-- Puedes agregar cualquier otro atributo o configuración si es necesario -->
+        </activity>
         <activity android:name=".views.clientes.MenuClientesActivity">
             <!-- Puedes agregar cualquier otro atributo o configuración si es necesario -->
         </activity>
