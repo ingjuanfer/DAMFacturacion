@@ -15,6 +15,13 @@ interface ProductoService {
         @Body producto: Producto
     ): Call<Void>
 
+    @PUT("Productos/{codProducto}")
+    fun actualizarProducto(
+        @Header("Authorization") token: String,
+        @Path("codProducto") codProducto: String,
+        @Body producto: Producto
+    ): Call<Void>
+
     @DELETE("Productos/{codProducto}")
     fun eliminarProducto(
         @Header("Authorization") token: String,

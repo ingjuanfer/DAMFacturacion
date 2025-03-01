@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.helpdesk.HelpDeskActivity">
+
+    <!-- Fondo -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Fondo de la aplicación"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondoapp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:background="@android:color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center_horizontal">
+
+                <!-- Logo -->
+                <ImageButton
+                    android:id="@+id/buttonHelpDesk"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/logoapp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="menuPrincipalonClick" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Centro de Ayuda"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Información de ayuda -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="\n**Autenticación:**\nIngrese su Usuario, Clave y Empresa en la pantalla de inicio de sesión para acceder al sistema.\n\n**Buscar un Cliente:**\nIngrese el NIF en la caja de búsqueda y presione 'Buscar Cliente'.\n\n**Editar un Cliente:**\nSeleccione un cliente de la lista, edite los datos y guarde los cambios.\n\n**Eliminar un Cliente:**\nSeleccione un cliente y presione 'Eliminar Cliente'. Confirme la acción para borrarlo.\n\n**Buscar un Producto:**\nIngrese el código o nombre del producto en la búsqueda y presione 'Buscar Producto'.\n\n**Editar un Producto:**\nSeleccione un producto, modifique los datos y guarde los cambios.\n\n**Eliminar un Producto:**\nSeleccione un producto y presione 'Eliminar Producto'. Confirme para eliminar."
+                    android:textSize="16sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

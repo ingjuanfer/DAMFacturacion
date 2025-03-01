@@ -71,9 +71,7 @@ class NuevoProductoActivity : AppCompatActivity() {
                 if (success) {
                     Toast.makeText(this, "Producto agregado con éxito", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MenuProductosActivity::class.java)
-                    // Iniciar la actividad NuevoProductoActivity
                     startActivity(intent)
-                    // Finalizar la actividad para que el usuario no pueda regresar
                     finish()
                 } else {
                     val errorMessage = if (message.isNotEmpty()) "Error: $message" else "Error desconocido"

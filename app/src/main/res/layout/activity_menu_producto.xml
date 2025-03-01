@@ -101,6 +101,7 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:backgroundTint="#4CAF50"
+                        android:onClick="editarProductoonClick"
                         android:text="Editar"
                         android:textColor="#FFFFFF"
                         android:textSize="12sp" />

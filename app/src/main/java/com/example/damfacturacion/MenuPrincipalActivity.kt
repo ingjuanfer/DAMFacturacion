@@ -1,11 +1,13 @@
 package com.example.damfacturacion
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.damfacturacion.controller.SessionController
+import com.example.damfacturacion.views.HelpDeskActivity
 import com.example.damfacturacion.views.clientes.MenuClientesActivity
 import com.example.damfacturacion.views.productos.MenuProductosActivity
 
@@ -58,15 +60,25 @@ class MenuPrincipalActivity : AppCompatActivity() {
         finish()
     }
 
+    fun goOrdenaPlusonClick(view: View) {
+        val url = "https://www.ordenaplus.com"
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+    }
     // Método para el botón ir a CLIENTES
     fun menuClientesonClick(view: View) {
         // Crear un Intent para ir al menu clientes
         val intent = Intent(this, MenuClientesActivity::class.java)
-
         // Iniciar la actividad MenuClientesActivity
         startActivity(intent)
-
         // Finalizar la actividad de login para que el usuario no pueda regresar
+        finish()
+    }
+
+    // Método para el botón ir a CLIENTES
+    fun helpdeskonClick(view: View) {
+        val intent = Intent(this, HelpDeskActivity::class.java)
+        startActivity(intent)
         finish()
     }
 

@@ -113,20 +113,22 @@
 
                 <TableRow>
                     <Button
-                        android:id="@+id/buttonTecnico"
+                        android:id="@+id/buttonWebsite"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:backgroundTint="#9C27B0"
-                        android:text="Técnico"
+                        android:text="Sitio web"
                         android:textSize="12sp"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#FFFFFF"
+                        android:onClick="goOrdenaPlusonClick" />
 
                     <Button
-                        android:id="@+id/buttonProyecto"
+                        android:id="@+id/buttonHelpdesk"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:backgroundTint="#FFC107"
-                        android:text="Proyecto"
+                        android:text="Helpdesk"
+                        android:onClick="helpdeskonClick"
                         android:textSize="12sp"
                         android:textColor="#FFFFFF" />
 

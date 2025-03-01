@@ -42,8 +42,15 @@ class MenuProductosActivity : AppCompatActivity() {
 
     // Método para el botón que es el logo de la app para regresar al menu Principal
     fun menuPrincipalonClick(view: View) {
-        // Crear un Intent para ir a la pantalla del menu productos
         val intent = Intent(this, MenuPrincipalActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    // Método para el botón Nuevo Producto
+    fun nuevoProductoonClick(view: View) {
+        // Crear un Intent para ir a la pantalla principal
+        val intent = Intent(this, NuevoProductoActivity::class.java)
 
         // Iniciar la actividad NuevoProductoActivity
         startActivity(intent)
@@ -52,10 +59,10 @@ class MenuProductosActivity : AppCompatActivity() {
         finish()
     }
 
-    // Método para el botón Nuevo Producto
-    fun nuevoProductoonClick(view: View) {
+    // Método para el botón Editar Producto
+    fun editarProductoonClick(view: View) {
         // Crear un Intent para ir a la pantalla principal
-        val intent = Intent(this, NuevoProductoActivity::class.java)
+        val intent = Intent(this, EditarProductoActivity::class.java)
 
         // Iniciar la actividad NuevoProductoActivity
         startActivity(intent)

@@ -38,27 +38,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:padding="24dp">
 
             <ImageView
                 android:id="@+id/imageViewLogo"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_marginBottom="16dp"
                 android:contentDescription="Logo de la aplicación"
                 android:scaleType="fitCenter"
-                android:src="@drawable/logoapp"
-                android:layout_marginBottom="16dp" />
+                android:src="@drawable/logoapp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="Formulario Productos"
-                android:textSize="24sp"
-                android:textStyle="bold"
                 android:textColor="#333333"
-                android:layout_marginBottom="16dp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editTextCodProducto"
@@ -73,6 +73,13 @@
                 android:layout_height="wrap_content"
                 android:hint="Nombre del Producto"
                 android:inputType="text" />
+
+            <TextView
+                android:id="@+id/textViewUnidadMedida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unidad de Medida:"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinnerUnidadMedida"
@@ -110,10 +117,10 @@
                 android:id="@+id/buttonAgregarProducto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Agregar Producto"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="#4CAF50"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="16dp" />
+                android:text="Agregar Producto"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
