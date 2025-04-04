@@ -88,7 +88,8 @@
                         android:backgroundTint="#FF9800"
                         android:text="Ventas"
                         android:textSize="12sp"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#FFFFFF"
+                        android:onClick="menuVentasonClick" />
 
                     <Button
                         android:id="@+id/buttonProductos"

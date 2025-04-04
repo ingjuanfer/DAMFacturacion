@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.damfacturacion.controller.SessionController
 import com.example.damfacturacion.views.HelpDeskActivity
 import com.example.damfacturacion.views.clientes.MenuClientesActivity
+import com.example.damfacturacion.views.facturacion.NewFactClientActivity
 import com.example.damfacturacion.views.productos.MenuProductosActivity
 
 class MenuPrincipalActivity : AppCompatActivity() {
@@ -78,6 +79,13 @@ class MenuPrincipalActivity : AppCompatActivity() {
     // Método para el botón ir a CLIENTES
     fun helpdeskonClick(view: View) {
         val intent = Intent(this, HelpDeskActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    // Método para el botón ir a VENTAS
+    fun menuVentasonClick(view: View) {
+        val intent = Intent(this, NewFactClientActivity::class.java)
         startActivity(intent)
         finish()
     }
