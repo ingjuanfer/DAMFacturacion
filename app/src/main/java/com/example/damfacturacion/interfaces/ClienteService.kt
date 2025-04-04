@@ -8,6 +8,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ClienteService {
@@ -15,6 +16,13 @@ interface ClienteService {
     @POST("Clientes/CreateCliente")
     fun agregarCliente(
         @Header("Authorization") token: String,
+        @Body cliente: Cliente
+    ): Call<Void>
+
+    @PUT("Clientes/{nIF}")
+    fun actualizarCliente(
+        @Header("Authorization") token: String,
+        @Path("nIF") nIF: String,
         @Body cliente: Cliente
     ): Call<Void>
 

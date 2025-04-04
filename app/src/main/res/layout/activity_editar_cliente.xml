@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.clientes.EditarClienteActivity">
+
+    <!-- Fondo -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Fondo de la aplicación"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondoapp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:background="@android:color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center_horizontal">
+
+                <!-- Logo -->
+                <ImageButton
+                    android:id="@+id/buttonMenuClientes"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/logoapp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="menuClientesOnClick"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editar Cliente"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Sección de búsqueda -->
+                <EditText
+                    android:id="@+id/editTextBuscarNIF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingrese NIF del cliente"
+                    android:inputType="text" />
+
+                <Button
+                    android:id="@+id/buttonBuscarCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Buscar Cliente"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="8dp" />
+
+                <!-- Sección de edición de datos -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Datos del Cliente"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/textViewNIF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NIF:" />
+
+                <TextView
+                    android:id="@+id/textNIF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/textViewdigitoControl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Digito Control:" />
+
+                <EditText
+                    android:id="@+id/editTextdigitoControl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Digito Control"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/textViewnombreEmpresa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre Empresa:" />
+
+                <EditText
+                    android:id="@+id/editTextnombreEmpresa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre Empresa"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/textViewTelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Teléfono:" />
+
+                <EditText
+                    android:id="@+id/editTexttelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Teléfono de contacto #1"
+                    android:inputType="phone" />
+
+                <TextView
+                    android:id="@+id/textViewmovil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Teléfono:" />
+
+                <EditText
+                    android:id="@+id/editTextmovil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Teléfono móvil"
+                    android:inputType="phone" />
+
+                <TextView
+                    android:id="@+id/textViewemail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email:" />
+
+                <EditText
+                    android:id="@+id/editTextemail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Correo electrónico"
+                    android:inputType="textEmailAddress" />
+
+                <TextView
+                    android:id="@+id/textViewdireccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dirección:" />
+
+                <EditText
+                    android:id="@+id/editTextdireccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Dirección"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/textViewcodigoPostal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Codigo Postal:" />
+
+                <EditText
+                    android:id="@+id/editTextcodigoPostal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Código Postal"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/textViewcodCiudad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Código Ciudad" />
+
+                <EditText
+                    android:id="@+id/editTextcodCiudad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Código Ciudad"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/textViewcodProvincia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Código Provincia" />
+
+                <EditText
+                    android:id="@+id/editTextcodProvincia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Código Provincia"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/textViewcodPais"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Código Pais" />
+
+                <EditText
+                    android:id="@+id/editTextcodPais"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Código Pais"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/textViewEstado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Estado:" />
+
+                <CheckBox
+                    android:id="@+id/switchActivoCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Activo" />
+
+                <Button
+                    android:id="@+id/buttonGuardarCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Guardar Cambios"
+                    android:backgroundTint="#4CAF50"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="16dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

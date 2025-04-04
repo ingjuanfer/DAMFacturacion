@@ -91,9 +91,7 @@ class NuevoClienteActivity : AppCompatActivity() {
                 if (success) {
                     Toast.makeText(this, "Cliente agregado con éxito", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MenuClientesActivity::class.java)
-                    // Iniciar la actividad MenuClientesActivity
                     startActivity(intent)
-                    // Finalizar la actividad para que el usuario no pueda regresar
                     finish()
                 } else {
                     val errorMessage = if (message.isNotEmpty()) "Error: $message" else "Error desconocido"

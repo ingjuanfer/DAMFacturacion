@@ -99,6 +99,9 @@ class EliminarClienteActivity : AppCompatActivity() {
                 if (success) {
                     Toast.makeText(this, "Cliente eliminado con éxito", Toast.LENGTH_SHORT).show()
                     limpiarCampos()
+                    val intent = Intent(this, MenuClientesActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     val errorMessage = if (message.isNotEmpty()) "Error: $message" else "Error desconocido"
                     Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
@@ -119,7 +122,7 @@ class EliminarClienteActivity : AppCompatActivity() {
 
     // Método para regresar al menú de productos
     fun menuProductosonClick(view: View) {
-        val intent = Intent(this, MenuProductosActivity::class.java)
+        val intent = Intent(this, MenuClientesActivity::class.java)
         startActivity(intent)
         finish()
     }

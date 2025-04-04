@@ -42,13 +42,8 @@ class MenuProductosActivity : AppCompatActivity() {
 
     // Método para el botón que es el logo de la app para regresar al menu Principal
     fun menuPrincipalonClick(view: View) {
-        // Crear un Intent para ir a la pantalla del menu productos
         val intent = Intent(this, MenuPrincipalActivity::class.java)
-
-        // Iniciar la actividad NuevoProductoActivity
         startActivity(intent)
-
-        // Finalizar la actividad de login para que el usuario no pueda regresar
         finish()
     }
 
@@ -64,15 +59,22 @@ class MenuProductosActivity : AppCompatActivity() {
         finish()
     }
 
-    // Método para el botón Eliminar Producto
-    fun eliminarProductoonClick(view: View) {
+    // Método para el botón Editar Producto
+    fun editarProductoonClick(view: View) {
         // Crear un Intent para ir a la pantalla principal
-        val intent = Intent(this, EliminarProductoActivity::class.java)
+        val intent = Intent(this, EditarProductoActivity::class.java)
 
         // Iniciar la actividad NuevoProductoActivity
         startActivity(intent)
 
         // Finalizar la actividad de login para que el usuario no pueda regresar
+        finish()
+    }
+
+    // Método para el botón Eliminar Producto
+    fun eliminarProductoonClick(view: View) {
+        val intent = Intent(this, EliminarProductoActivity::class.java)
+        startActivity(intent)
         finish()
     }
 

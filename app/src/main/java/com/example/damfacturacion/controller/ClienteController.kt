@@ -1,5 +1,6 @@
 package com.example.damfacturacion.controller
 
+import android.util.Log
 import com.example.damfacturacion.controller.ProductoController.ErrorResponse
 import com.example.damfacturacion.interfaces.ClienteService
 import com.example.damfacturacion.model.Cliente
@@ -82,6 +83,51 @@ class ClienteController {
             }
         })
     }
+
+    fun actualizarCliente(token: String, cliente: Cliente, callback: (Boolean, String) -> Unit) {
+        val call = clienteService.actualizarCliente("Bearer $token", cliente.nif, cliente)
+
+        Log.d("ClienteService", "Call generado: $call")
+
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    callback(true, "Cliente actualizado correctamente")
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    val errorMessage = try {
+                        val errorJson = Gson().fromJson(errorBody, com.example.damfacturacion.controller.ProductoController.ErrorResponse::class.java)
+                        errorJson.mensaje ?: "Error desconocido"
+                    } catch (e: Exception) {
+                        "Error desconocido (${response.code()})"
+                    }
+                    callback(false, errorMessage)
+                }
+            }
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                callback(false, "Error de conexión: ${t.message}")
+            }
+        })
+    }
+
+    fun getClientePorNIF(token: String, nIF: String, callback: (Cliente?, String) -> Unit) {
+        val call = clienteService.getClientePorNIF("Bearer $token", nIF )
+
+        call.enqueue(object : Callback<List<Cliente>> {
+            override fun onResponse(call: Call<List<Cliente>>, response: Response<List<Cliente>>) {
+                if (response.isSuccessful && !response.body().isNullOrEmpty()) {
+                    callback(response.body()!![0], "Cliente encontrado")
+                } else {
+                    callback(null, "Cliente no encontrado")
+                }
+            }
+
+            override fun onFailure(call: Call<List<Cliente>>, t: Throwable) {
+                callback(null, "Error de conexión: ${t.message}")
+            }
+        })
+    }
+
 
     // Método para parsear errores
     private fun parseError(response: Response<*>): String {
