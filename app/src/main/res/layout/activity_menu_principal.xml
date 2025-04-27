@@ -81,67 +81,81 @@
                 android:gravity="center">
 
                 <TableRow>
-                    <Button
+                    <ImageButton
                         android:id="@+id/buttonVentas"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:backgroundTint="#FF9800"
-                        android:text="Ventas"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#FFFFFF"
+                        android:background="#FF9800"
+                        android:src="@drawable/ventasapp"
+                        android:scaleType="centerInside"
+                        android:contentDescription="Botón Ventas"
                         android:onClick="menuVentasonClick" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/buttonProductos"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:backgroundTint="#4CAF50"
-                        android:text="Producto"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#FFFFFF"
+                        android:background="#FF9800"
+                        android:src="@drawable/productosapp"
+                        android:scaleType="centerInside"
+                        android:contentDescription="Botón Productos"
                         android:onClick="menuProductosonClick" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/buttonClientes"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:backgroundTint="#2196F3"
-                        android:text="Clientes"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#FFFFFF"
+                        android:background="#FF9800"
+                        android:src="@drawable/clientesapp"
+                        android:scaleType="centerInside"
+                        android:contentDescription="Botón Clientes"
                         android:onClick="menuClientesonClick" />
+
                 </TableRow>
 
-                <TableRow>
-                    <Button
+                <TableRow
+                    android:id="@+id/miTableRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageButton
                         android:id="@+id/buttonWebsite"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:backgroundTint="#9C27B0"
-                        android:text="Sitio web"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#FFFFFF"
+                        android:background="#FF9800"
+                        android:src="@drawable/sitiowebapp"
+                        android:scaleType="centerInside"
+                        android:contentDescription="Botón SitioWeb"
                         android:onClick="goOrdenaPlusonClick" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/buttonHelpdesk"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:backgroundTint="#FFC107"
-                        android:text="Helpdesk"
-                        android:onClick="helpdeskonClick"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF" />
+                        android:backgroundTint="#FFFFFF"
+                        android:background="#FF9800"
+                        android:src="@drawable/helpdeskapp"
+                        android:scaleType="centerInside"
+                        android:contentDescription="Botón HelpDesk"
+                        android:onClick="helpdeskonClick" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/buttonSalir"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:backgroundTint="#F44336"
-                        android:text="Salir"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#FFFFFF"
+                        android:background="#FF9800"
+                        android:src="@drawable/salirapp"
+                        android:scaleType="centerInside"
+                        android:contentDescription="Botón Salir"
                         android:onClick="onLogoutClick" />
+
                 </TableRow>
             </TableLayout>
         </LinearLayout>

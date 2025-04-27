@@ -86,35 +86,39 @@
 
                 <TableRow>
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/buttonCrearProducto"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:backgroundTint="#FF9800"
-                        android:onClick="nuevoProductoonClick"
-                        android:text="Crear"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                        android:backgroundTint="#FFFFFF"
+                        android:background="#FF9800"
+                        android:src="@drawable/crearapp"
+                        android:scaleType="centerInside"
+                        android:contentDescription="Botón Crear"
+                        android:onClick="nuevoProductoonClick" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/buttonEditarProducto"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:backgroundTint="#4CAF50"
-                        android:onClick="editarProductoonClick"
-                        android:text="Editar"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                        android:backgroundTint="#FFFFFF"
+                        android:background="#FF9800"
+                        android:src="@drawable/editarapp"
+                        android:scaleType="centerInside"
+                        android:contentDescription="Botón Editar"
+                        android:onClick="editarProductoonClick" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/buttonEliminarProducto"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:backgroundTint="#2196F3"
-                        android:onClick="eliminarProductoonClick"
-                        android:text="Eliminar"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                        android:backgroundTint="#FFFFFF"
+                        android:background="#FF9800"
+                        android:src="@drawable/eliminarapp"
+                        android:scaleType="centerInside"
+                        android:contentDescription="Botón Eliminar"
+                        android:onClick="eliminarProductoonClick" />
+
                 </TableRow>
             </TableLayout>
         </LinearLayout>
