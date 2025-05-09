@@ -3,17 +3,18 @@ package com.example.damfacturacion.controller
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.damfacturacion.model.Usuario
+import com.example.damfacturacion.model.Cliente
+import com.google.gson.Gson
 
 class SessionController(private val context: Context) {
 
-    private val PREF_NAME = "UserSession"
+    private val PREF_NAME_USER = "UserSession"
+    private val PREF_NAME_CLIENT = "ClientSession"
 
-    // Método para guardar la sesión con los datos del Usuario
+    // Métodos para gestionar sesión de usuario
     fun saveSession(usuario: Usuario) {
-        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_USER, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-
-        // Guardar cada dato del Usuario individualmente
         editor.putString("DNI", usuario.dni)
         editor.putString("NOMBRE", usuario.nombre)
         editor.putString("USER_SESION", usuario.userSesion)
@@ -22,16 +23,11 @@ class SessionController(private val context: Context) {
         editor.putBoolean("ACTIVO", usuario.activo)
         editor.putString("TEL_MOVIL", usuario.tel_Movil)
         editor.putString("EMAIL", usuario.email)
-
-        // Aplicar los cambios
         editor.apply()
     }
 
-    // Método para obtener los datos del Usuario desde SharedPreferences
     fun getSession(): Usuario? {
-        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-
-        // Obtener los valores de SharedPreferences
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_USER, Context.MODE_PRIVATE)
         val dni = sharedPreferences.getString("DNI", null)
         val nombre = sharedPreferences.getString("NOMBRE", null)
         val userSesion = sharedPreferences.getString("USER_SESION", null)
@@ -41,19 +37,44 @@ class SessionController(private val context: Context) {
         val telMovil = sharedPreferences.getString("TEL_MOVIL", null)
         val email = sharedPreferences.getString("EMAIL", null)
 
-        // Verificar si los datos están disponibles
         if (dni != null && nombre != null && userSesion != null && claveSesion != null && fechaRegistro != null &&
             telMovil != null && email != null) {
             return Usuario(dni, nombre, userSesion, claveSesion, fechaRegistro, activo, telMovil, email)
         }
-        return null  // Si no hay sesión guardada, retornar null
+        return null
     }
 
-    // Método para borrar la sesión
     fun clearSession() {
-        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_USER, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.clear()  // Borrar todas las preferencias
-        editor.apply()  // Aplicar los cambios
+        editor.clear()
+        editor.apply()
+    }
+
+    // Métodos para gestionar sesión de cliente
+    fun saveClientSession(cliente: Cliente) {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_CLIENT, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val clienteJson = Gson().toJson(cliente)
+        editor.putString("CLIENT_DATA", clienteJson)
+        editor.apply()
+    }
+
+    fun getClientSession(): Cliente? {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_CLIENT, Context.MODE_PRIVATE)
+        val clienteJson = sharedPreferences.getString("CLIENT_DATA", null)
+
+        return if (clienteJson != null) {
+            Gson().fromJson(clienteJson, Cliente::class.java)
+        } else {
+            null
+        }
+    }
+
+    fun clearClientSession() {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_CLIENT, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
     }
 }

@@ -83,32 +83,17 @@ class NewFactClientActivity : AppCompatActivity() {
         textTelefono.text = cliente.telefono
         textEmail.text = cliente.email
         textActivo.text = if (cliente.activo == true) "Activo" else "Inactivo"
+        Sesion.nifCliente = cliente.nif
     }
 
     private fun continuarConCliente() {
-        val cliente = clienteActual ?: run {
             val intent = Intent(this, NewFactProductsActivity::class.java)
             startActivity(intent)
             finish()
-        }
-        /*
-                val token = SessionManager.encryptedEmpresa
+    }
 
-                clienteController.eliminarCliente(token.toString(), cliente.nif) { success, message ->
-                    runOnUiThread {
-                        if (success) {
-                            Toast.makeText(this, "Cliente eliminado con éxito", Toast.LENGTH_SHORT).show()
-                            limpiarCampos()
-                            val intent = Intent(this, MenuClientesActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            val errorMessage = if (message.isNotEmpty()) "Error: $message" else "Error desconocido"
-                            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
-                        }
-                    }
-                }
-                */
+    object Sesion {
+        var nifCliente: String? = null
     }
 
     private fun limpiarCampos() {
