@@ -24,3 +24,11 @@ data class ListaProductos(
     val fechaCreacion: Date?,
     val linkImage: String?
 )
+
+data class ProductoSeleccionado(
+    val codProducto: String,
+    val nombreProducto: String,
+    val precio: Double,
+    val cantidad: Int,
+    val iva: Double
+)

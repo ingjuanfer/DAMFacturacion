@@ -78,7 +78,7 @@ class NewFactProductsActivity : AppCompatActivity() {
 
     private fun mostrarInformacionProducto(producto: Producto) {
         textCodProducto.text = producto.codProducto
-        textNombreProducto.text = producto.nombreProducto
+        textNombreProducto.text =  producto.nombreProducto
         textUnidadMedida.text = producto.unidadMedida
         textIVA.text = producto.iva.toString()
         textPrecio.text = producto.precio.toString()

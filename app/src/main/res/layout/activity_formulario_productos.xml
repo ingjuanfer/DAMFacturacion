@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.facturacion.FormularioProductos">
+
+    <ImageButton
+        android:id="@+id/buttonMenuPrinciapl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondoapp"
+        android:contentDescription="Fondo de la aplicación"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="menuPrincipalonClick"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center_horizontal">
+
+                <!-- Logo -->
+                <ImageButton
+                    android:id="@+id/buttonMenuPrincipal"
+                    android:layout_width="90dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="1dp"
+                    android:src="@drawable/logoapp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="menuPrincipalonClick"/>
+
+                <!-- Nombre del Cliente centrado -->
+                <TextView
+                    android:id="@+id/textViewCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre del Cliente"
+                    android:textSize="18sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center" />
+
+                <Button
+                    android:id="@+id/buttonBuscarProductos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Buscador de productos"
+                    android:backgroundTint="#884455"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="8dp" />
+
+                <!-- Sección de registro de producto x codigo -->
+                <EditText
+                    android:id="@+id/editTextCodigo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingrese codigo del producto"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/editTextCantidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingrese la cantidad"
+                    android:inputType="text" />
+
+                <Button
+                    android:id="@+id/buttonAgregar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Agregar"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="8dp" />
+
+                <!-- Listado de Productos -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewClientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" />
+
+                <Button
+                    android:id="@+id/buttonGuardarFactura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Guardar Factura"
+                    android:backgroundTint="#444455"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

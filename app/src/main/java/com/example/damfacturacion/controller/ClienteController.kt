@@ -22,6 +22,30 @@ class ClienteController {
 
     private val clienteService: ClienteService = retrofit.create(ClienteService::class.java)
 
+    fun buscarClientesPorNombre(token: String, nombre: String, callback: (List<Cliente>?, String) -> Unit) {
+        val call = clienteService.buscarClientesPorNombre("Bearer $token", nombre)
+
+        call.enqueue(object : Callback<List<Cliente>> {
+            override fun onResponse(call: Call<List<Cliente>>, response: Response<List<Cliente>>) {
+                if (response.isSuccessful) {
+                    val clientes = response.body()
+                    if (!clientes.isNullOrEmpty()) {
+                        callback(clientes, "Clientes encontrados")
+                    } else {
+                        callback(emptyList(), "No se encontraron clientes")
+                    }
+                } else {
+                    callback(null, "Error al buscar clientes (${response.code()})")
+                }
+            }
+
+            override fun onFailure(call: Call<List<Cliente>>, t: Throwable) {
+                callback(null, "Error de conexión: ${t.message}")
+            }
+        })
+    }
+
+
     fun agregarCliente(token: String, cliente: Cliente, callback: (Boolean, String) -> Unit) {
         val call = clienteService.agregarCliente("Bearer $token", cliente)
 
@@ -127,6 +151,30 @@ class ClienteController {
             }
         })
     }
+
+    fun obtenerClientesPorNombre(token: String, nombre: String, callback: (List<Cliente>?, String) -> Unit) {
+        val call = clienteService.buscarClientesPorNombre("Bearer $token", nombre)
+
+        call.enqueue(object : Callback<List<Cliente>> {
+            override fun onResponse(call: Call<List<Cliente>>, response: Response<List<Cliente>>) {
+                if (response.isSuccessful) {
+                    val clientes = response.body()
+                    if (!clientes.isNullOrEmpty()) {
+                        callback(clientes, "Clientes encontrados")
+                    } else {
+                        callback(emptyList(), "No se encontraron clientes")
+                    }
+                } else {
+                    callback(null, "Error al buscar clientes: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<Cliente>>, t: Throwable) {
+                callback(null, "Error de conexión: ${t.message}")
+            }
+        })
+    }
+
 
 
     // Método para parsear errores

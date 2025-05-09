@@ -38,4 +38,11 @@ interface ClienteService {
         @Path("nIF") nIF: String
     ): Call<List<Cliente>> // Se devuelve una lista porque el JSON es un array
 
+    @GET("Clientes/Consulta_Nombres/{nombre}")
+    fun buscarClientesPorNombre(
+        @Header("Authorization") token: String,
+        @Path("nombre") nombre: String
+    ): Call<List<Cliente>>
+
+
 }
