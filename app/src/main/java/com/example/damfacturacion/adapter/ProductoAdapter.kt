@@ -22,7 +22,7 @@ class ProductoAdapter(private var productos: List<Producto>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoViewHolder {
         // Inflamos el layout del item del producto
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.producto_item, parent, false)
+            .inflate(R.layout.item_producto_seleccionado, parent, false)
         return ProductoViewHolder(itemView)
     }
 
