@@ -1,6 +1,9 @@
 package com.example.damfacturacion.views.facturacion
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.damfacturacion.R
 import com.example.damfacturacion.controller.SessionController
@@ -11,6 +14,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.damfacturacion.MenuPrincipalActivity
 import com.example.damfacturacion.SessionManager
 import com.example.damfacturacion.views.facturacion.ProductoAdapter
 import com.example.damfacturacion.controller.ProductoController
@@ -18,6 +22,7 @@ import com.example.damfacturacion.model.ProductoSeleccionado
 import com.example.damfacturacion.controller.FacturaController
 import com.example.damfacturacion.model.FacturaEncabezado
 import com.example.damfacturacion.model.FacturaDetalle
+
 
 class FormularioProductos : AppCompatActivity() {
 
@@ -41,11 +46,9 @@ class FormularioProductos : AppCompatActivity() {
         recyclerViewProductos.adapter = adapter
 
         if (cliente != null) {
-            // Mostrar el cliente seleccionado
             val textViewCliente = findViewById<TextView>(R.id.textViewCliente)
             textViewCliente.text = "Cliente seleccionado: ${cliente.nombreEmpresa} - ${cliente.nif}"
         } else {
-            // Manejar el caso cuando no hay sesión
             println("No hay cliente seleccionado")
         }
 
@@ -71,6 +74,7 @@ class FormularioProductos : AppCompatActivity() {
                 facturaController.crearEncabezadoFactura(token.toString(), encabezado) { nroDcto, mensaje ->
                     runOnUiThread {
                         if (nroDcto != null) {
+                            var detallesGuardados = 0
                             productosSeleccionados.forEach { producto ->
                                 val detalle = FacturaDetalle(
                                     nroDcto = nroDcto,
@@ -81,7 +85,30 @@ class FormularioProductos : AppCompatActivity() {
                                 )
                                 facturaController.crearDetalleFactura(token.toString(), detalle) { success, detalleMensaje ->
                                     if (success) {
-                                        Toast.makeText(this, "Factura guardada correctamente", Toast.LENGTH_SHORT).show()
+                                        detallesGuardados++
+                                        if (detallesGuardados == productosSeleccionados.size) {
+                                            facturaController.generarFacturaPOS(token.toString(), nroDcto) { posSuccess, posMensaje ->
+                                                runOnUiThread {
+                                                    if (posSuccess) {
+                                                        AlertDialog.Builder(this)
+                                                            .setTitle("Factura generada")
+                                                            .setMessage("Factura guardada y generada correctamente.")
+                                                            .setPositiveButton("OK") { dialog, _ ->
+                                                                productosSeleccionados.clear()
+                                                                adapter.notifyDataSetChanged()
+                                                                dialog.dismiss()
+                                                                val intent = Intent(this, MenuPrincipalActivity::class.java)
+                                                                startActivity(intent)
+                                                                finish()
+                                                            }
+                                                            .setCancelable(false)
+                                                            .show()
+                                                    } else {
+                                                        Toast.makeText(this, posMensaje, Toast.LENGTH_SHORT).show()
+                                                    }
+                                                }
+                                            }
+                                        }
                                     } else {
                                         Toast.makeText(this, detalleMensaje, Toast.LENGTH_SHORT).show()
                                     }
@@ -113,8 +140,6 @@ class FormularioProductos : AppCompatActivity() {
                         iva = producto.iva ?: 0.0
                     )
                     adapter.agregarProducto(productoSeleccionado)
-
-                    // Limpiar los campos después de agregar el producto
                     findViewById<EditText>(R.id.editTextCodigo).text.clear()
                     findViewById<EditText>(R.id.editTextCantidad).text.clear()
                 } else {
@@ -123,4 +148,13 @@ class FormularioProductos : AppCompatActivity() {
             }
         }
     }
+
+    // Método para el botón que es el logo de la app para regresar al menu Principal
+    fun menuPrincipalonClick(view: View) {
+        val intent = Intent(this, MenuPrincipalActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+
 }

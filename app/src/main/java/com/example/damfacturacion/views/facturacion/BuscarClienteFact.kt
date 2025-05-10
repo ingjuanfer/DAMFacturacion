@@ -82,9 +82,11 @@ class BuscarClienteFact : AppCompatActivity() {
     }
 
 
-    fun menuClientesOnClick(view: View) {
+    // Método para el botón que es el logo de la app para regresar al menu Principal
+    fun menuPrincipalonClick(view: View) {
         val intent = Intent(this, MenuPrincipalActivity::class.java)
         startActivity(intent)
         finish()
     }
+
 }
