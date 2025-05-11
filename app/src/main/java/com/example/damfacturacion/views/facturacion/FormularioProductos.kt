@@ -149,6 +149,13 @@ class FormularioProductos : AppCompatActivity() {
         }
     }
 
+    // Método para el botón de busqueda de productos
+    fun buttonBuscarProductosonClick(view: View) {
+        val intent = Intent(this, BuscarProductos::class.java)
+        startActivity(intent)
+        //finish()
+    }
+
     // Método para el botón que es el logo de la app para regresar al menu Principal
     fun menuPrincipalonClick(view: View) {
         val intent = Intent(this, MenuPrincipalActivity::class.java)

@@ -1,5 +1,7 @@
 package com.example.damfacturacion.interfaces
 
+import com.example.damfacturacion.model.Cliente
+import com.example.damfacturacion.model.ListaProductosBuscados
 import com.example.damfacturacion.model.Producto
 import retrofit2.Call
 import retrofit2.http.Body
@@ -33,6 +35,12 @@ interface ProductoService {
         @Header("Authorization") token: String,
         @Path("codProducto") codProducto: String
     ): Call<List<Producto>> // Se devuelve una lista porque el JSON es un array
+
+    @GET("Productos/Consulta_Nombres/{nombre}")
+    fun buscarProductosPorNombre(
+        @Header("Authorization") token: String,
+        @Path("nombre") nombre: String
+    ): Call<List<ListaProductosBuscados>>
 
 
 }

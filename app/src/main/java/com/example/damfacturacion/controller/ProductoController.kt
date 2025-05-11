@@ -10,6 +10,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.util.Log
+import com.example.damfacturacion.model.Cliente
+import com.example.damfacturacion.model.ListaProductosBuscados
 
 
 class ProductoController {
@@ -105,6 +107,29 @@ class ProductoController {
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 callback(false, "Error de conexión: ${t.message}")
+            }
+        })
+    }
+
+    fun obtenerProductosPorNombre(token: String, nombre: String, callback: (List<ListaProductosBuscados>?, String) -> Unit) {
+        val call = productoService.buscarProductosPorNombre("Bearer $token", nombre)
+
+        call.enqueue(object : Callback<List<ListaProductosBuscados>> {
+            override fun onResponse(call: Call<List<ListaProductosBuscados>>, response: Response<List<ListaProductosBuscados>>) {
+                if (response.isSuccessful) {
+                    val productos = response.body()
+                    if (!productos.isNullOrEmpty()) {
+                        callback(productos, "Productos encontrados")
+                    } else {
+                        callback(emptyList(), "No se encontraron productos")
+                    }
+                } else {
+                    callback(null, "Error al buscar productos: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<ListaProductosBuscados>>, t: Throwable) {
+                callback(null, "Error de conexión: ${t.message}")
             }
         })
     }

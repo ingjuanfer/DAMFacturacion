@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.damfacturacion.model.Usuario
 import com.example.damfacturacion.model.Cliente
+import com.example.damfacturacion.model.ListaProductosBuscados
+import com.example.damfacturacion.model.Producto
 import com.google.gson.Gson
 
 class SessionController(private val context: Context) {
@@ -72,6 +74,34 @@ class SessionController(private val context: Context) {
     }
 
     fun clearClientSession() {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_CLIENT, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
+    }
+
+
+    // Métodos para gestionar sesión de producto
+    fun saveProductSession(producto: ListaProductosBuscados) {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_CLIENT, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val clienteJson = Gson().toJson(producto)
+        editor.putString("CLIENT_DATA", clienteJson)
+        editor.apply()
+    }
+
+    fun getProductSession(): Producto? {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_CLIENT, Context.MODE_PRIVATE)
+        val productoJson = sharedPreferences.getString("CLIENT_DATA", null)
+
+        return if (productoJson != null) {
+            Gson().fromJson(productoJson, Producto::class.java)
+        } else {
+            null
+        }
+    }
+
+    fun clearProductSession() {
         val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_CLIENT, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.clear()

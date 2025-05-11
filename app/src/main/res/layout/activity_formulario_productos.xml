@@ -79,7 +79,10 @@
                     android:text="Buscador de productos"
                     android:backgroundTint="#884455"
                     android:textColor="#FFFFFF"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="buttonBuscarProductosonClick"/>
 
                 <!-- Sección de registro de producto x codigo -->
                 <EditText

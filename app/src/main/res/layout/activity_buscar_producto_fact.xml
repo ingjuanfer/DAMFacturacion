@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.facturacion.BuscarProductoFact">
+
+    <ImageButton
+        android:id="@+id/buttonMenuPrinciapl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondoapp"
+        android:contentDescription="Fondo de la aplicación"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="menuPrincipalonClick"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center_horizontal">
+
+                <!-- Logo -->
+                <ImageButton
+                    android:id="@+id/buttonRegresar"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginBottom="1dp"
+                    android:src="@drawable/logoapp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="regresaronClick"/>
+
+                <!-- Sección de búsqueda -->
+                <EditText
+                    android:id="@+id/editTextBuscarProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingrese nombre del producto"
+                    android:inputType="text" />
+
+                <Button
+                    android:id="@+id/buttonBuscarProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Buscar Producto"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="8dp"
+                    android:onClick="buttonBuscarProducto"/>
+
+                <!-- Listado de clientes -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewProductos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
