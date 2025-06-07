@@ -19,19 +19,11 @@ class BuscadorProductosAdapter(
     private val onProductoClick: (ListaProductosBuscados) -> Unit
 ) : RecyclerView.Adapter<BuscadorProductosAdapter.ProductoViewHolder>() {
 
-    inner class ProductoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nombreProducto: TextView = itemView.findViewById(R.id.textViewNombreProducto)
-        val codProducto: TextView = itemView.findViewById(R.id.textCodProducto)
-        val precio: TextView = itemView.findViewById(R.id.textViewPrecio)
-
-        init {
-            itemView.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    onProductoClick(productos[position])
-                }
-            }
-        }
+    class ProductoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val textViewNombreProducto: TextView = itemView.findViewById(R.id.textViewNombreProducto)
+        val textViewCodProducto: TextView = itemView.findViewById(R.id.textViewcodProducto)
+        val textViewIva: TextView = itemView.findViewById(R.id.textViewIva)
+        val textViewPrecio: TextView = itemView.findViewById(R.id.textViewPrecio)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoViewHolder {
@@ -42,9 +34,10 @@ class BuscadorProductosAdapter(
 
     override fun onBindViewHolder(holder: ProductoViewHolder, position: Int) {
         val producto = productos[position]
-        holder.nombreProducto.text = producto.nombreProducto
-        holder.codProducto.text = producto.codProducto
-        holder.precio.text = String.format("%.2f", producto.precio)
+        holder.textViewNombreProducto.text = producto.nombreProducto ?: "Sin nombre"
+        holder.textViewCodProducto.text = producto.codProducto
+        holder.textViewIva.text = String.format("%.2f%%", producto.iva ?: 0.0)
+        holder.textViewPrecio.text = String.format("%.2f €", producto.precio ?: 0.0)
     }
 
     override fun getItemCount(): Int = productos.size
@@ -54,6 +47,12 @@ class BuscadorProductosAdapter(
         productos = nuevosProductos
         notifyDataSetChanged()
     }
+
+    fun limpiarProductos() {
+        productos = emptyList()
+        notifyDataSetChanged()
+    }
+
 
 
 }

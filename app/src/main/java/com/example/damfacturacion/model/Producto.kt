@@ -41,11 +41,11 @@ data class ListaProductosBuscados(
     @SerializedName("nombreProducto")
     val nombreProducto: String?,
 
-    @SerializedName("activo")
-    val activo: Boolean?,
+//    @SerializedName("activo")
+//    val activo: Boolean?,
 
-    @SerializedName("unidadMedida")
-    val unidadMedida: String?,
+//    @SerializedName("unidadMedida")
+//    val unidadMedida: String?,
 
     @SerializedName("iva")
     val iva: Double?,
@@ -53,9 +53,9 @@ data class ListaProductosBuscados(
     @SerializedName("precio")
     val precio: Double?,
 
-    @SerializedName("fechaCreacion")
-    val fechaCreacion: String?,
-
-    @SerializedName("link_Image")
-    val linkImage: String?
+//    @SerializedName("fechaCreacion")
+//    val fechaCreacion: String?,
+//
+//    @SerializedName("link_Image")
+//    val linkImage: String?
 )

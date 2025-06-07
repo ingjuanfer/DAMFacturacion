@@ -21,7 +21,7 @@ class BuscarProductos : AppCompatActivity() {
     private lateinit var editTextBuscarProducto: EditText
     private lateinit var buttonBuscarProducto: Button
     private lateinit var recyclerViewProductos: RecyclerView
-    private lateinit var productoAdapter: BuscadorProductosAdapter
+    private lateinit var buscadorProductosAdapter: BuscadorProductosAdapter
 
     private val productoController = ProductoController()
 
@@ -35,10 +35,10 @@ class BuscarProductos : AppCompatActivity() {
         recyclerViewProductos = findViewById(R.id.recyclerViewProductos)
 
         // Configurar el RecyclerView
-        productoAdapter = BuscadorProductosAdapter(emptyList(), this) { producto ->
+        buscadorProductosAdapter = BuscadorProductosAdapter(emptyList(), this) { producto ->
             seleccionarProducto(producto)
         }
-        recyclerViewProductos.adapter = productoAdapter
+        recyclerViewProductos.adapter = buscadorProductosAdapter
         recyclerViewProductos.layoutManager = LinearLayoutManager(this)
 
         // Evento para buscar productos
@@ -64,7 +64,7 @@ class BuscarProductos : AppCompatActivity() {
                 runOnUiThread {
                     try {
                         if (productos != null) {
-                            productoAdapter.actualizarProductos(productos)
+                            buscadorProductosAdapter.actualizarProductos(productos)
                             Toast.makeText(
                                 this,
                                 "Productos cargados: ${productos.size}",
@@ -91,7 +91,7 @@ class BuscarProductos : AppCompatActivity() {
         val sessionController = SessionController(this)
         sessionController.saveProductSession(producto)
 
-        // Continuar a la siguiente pantalla
+        //Continuar a la siguiente pantalla
         val intent = Intent(this, FormularioProductos::class.java)
         startActivity(intent)
         finish()

@@ -20,10 +20,11 @@ class ProductoAdapter(private val productos: MutableList<ProductoSeleccionado>) 
     override fun onBindViewHolder(holder: ProductoViewHolder, position: Int) {
         val producto = productos[position]
         holder.nombreProducto.text = producto.nombreProducto
+        holder.codProducto.text = producto.codProducto
         holder.cantidad.text = producto.cantidad.toString()
+        holder.iva.text = "${producto.iva}%"  // Asumiendo que es un número
         holder.precio.text = String.format("%.2f", producto.precio)
     }
-
     override fun getItemCount(): Int = productos.size
 
     fun agregarProducto(producto: ProductoSeleccionado) {
@@ -33,7 +34,9 @@ class ProductoAdapter(private val productos: MutableList<ProductoSeleccionado>) 
 
     class ProductoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombreProducto: TextView = itemView.findViewById(R.id.textViewNombreProducto)
+        val codProducto: TextView = itemView.findViewById(R.id.textViewcodProducto)
         val cantidad: TextView = itemView.findViewById(R.id.textViewCantidad)
+        val iva: TextView = itemView.findViewById(R.id.textViewIva)
         val precio: TextView = itemView.findViewById(R.id.textViewPrecio)
     }
 }

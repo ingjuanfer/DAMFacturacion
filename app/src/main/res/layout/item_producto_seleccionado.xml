@@ -1,43 +1,65 @@
-<!-- res/layout/item_producto_seleccionado.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="8dp">
+    android:orientation="vertical"
+    android:padding="12dp">
 
+    <!-- Fila 1: Nombre del producto -->
     <TextView
         android:id="@+id/textViewNombreProducto"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
         android:text="Nombre del Producto"
-        android:textSize="16sp" />
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:maxLines="1" />
 
-    <TextView
-        android:id="@+id/textViewCantidad"
-        android:layout_width="0dp"
+    <!-- Fila 2: Cod, Cantidad, IVA, Precio -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Cant."
-        android:textAlignment="center"
-        android:textSize="16sp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp">
 
-    <TextView
-        android:id="@+id/textViewIva"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="IVA"
-        android:textAlignment="center"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textViewcodProducto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Cod"
+            android:textSize="14sp"
+            android:ellipsize="end"
+            android:maxLines="1" />
 
-    <TextView
-        android:id="@+id/textViewPrecio"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:text="Precio"
-        android:textAlignment="center"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textViewCantidad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cant."
+            android:textAlignment="center"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewIva"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="IVA"
+            android:textAlignment="center"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewPrecio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Precio"
+            android:textAlignment="center"
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </LinearLayout>

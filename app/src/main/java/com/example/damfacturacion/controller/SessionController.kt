@@ -12,6 +12,7 @@ class SessionController(private val context: Context) {
 
     private val PREF_NAME_USER = "UserSession"
     private val PREF_NAME_CLIENT = "ClientSession"
+    private val PREF_NAME_PRODUCT = "ProductSession"
 
     // Métodos para gestionar sesión de usuario
     fun saveSession(usuario: Usuario) {
@@ -83,15 +84,15 @@ class SessionController(private val context: Context) {
 
     // Métodos para gestionar sesión de producto
     fun saveProductSession(producto: ListaProductosBuscados) {
-        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_CLIENT, Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_PRODUCT, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        val clienteJson = Gson().toJson(producto)
-        editor.putString("CLIENT_DATA", clienteJson)
+        val productoJson = Gson().toJson(producto)
+        editor.putString("CLIENT_DATA", productoJson)
         editor.apply()
     }
 
     fun getProductSession(): Producto? {
-        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_CLIENT, Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_PRODUCT, Context.MODE_PRIVATE)
         val productoJson = sharedPreferences.getString("CLIENT_DATA", null)
 
         return if (productoJson != null) {
@@ -102,7 +103,7 @@ class SessionController(private val context: Context) {
     }
 
     fun clearProductSession() {
-        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_CLIENT, Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME_PRODUCT, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.clear()
         editor.apply()
